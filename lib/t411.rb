@@ -27,10 +27,10 @@
 =end
 
 require 't411/version'
-require '../lib/t411/api'
-require '../lib/t411/users'
-require '../lib/t411/torrents'
-require '../lib/t411/bookmarks'
+require 't411/api'
+require 't411/users'
+require 't411/torrents'
+require 't411/bookmarks'
 
 module T411
     include Api
