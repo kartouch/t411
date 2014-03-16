@@ -1,12 +1,9 @@
 module T411
   module Torrents
     extend self
-    def self.categories
-      T411::Api.request_data(URI.parse($t411_base_url + '/categories/tree'))
-    end
 
-    def self.terms
-      T411::Api.request_data(URI.parse($t411_base_url + '/terms/tree'))
+    %w(categories terms).each do |request|
+      define_method(:"#{request}") {T411::Api.request_data(URI.parse($t411_base_url + "/#{request}/tree"))}
     end
 
     def self.search(query, limit = 100)
@@ -39,15 +36,11 @@ module T411
       T411::Api.request_data(URI.parse($t411_base_url + '/torrents/top/100'))
     end
 
-    def self.today
-      T411::Api.request_data(URI.parse($t411_base_url + '/torrents/top/today'))
+    %w(today month).each do |request|
+      define_method(:"#{request}") {T411::Api.request_data(URI.parse($t411_base_url + "/torrents/top/#{request}"))}
     end
-
-    def self.month
-      T411::Api.request_data(URI.parse($t411_base_url + '/torrents/top/month'))
-    end
-
   end
 end
+
 
 
