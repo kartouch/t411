@@ -6,20 +6,15 @@ module T411
       define_method(:"#{request}") {T411::Api.request_data(URI.parse($t411_base_url + "/#{request}/tree"))}
     end
 
-    def self.search(query, limit = 100)
-      uri = URI.join($t411_base_url, '/torrents/','search/',"#{query.gsub(' ','+')}","?&limit=#{limit}")
-      http = Net::HTTP.new(uri.host, uri.port)
-      req = Net::HTTP::Get.new("/torrents/search/#{query.gsub(' ','+')}?&limit=#{limit}")
-      req['Authorization'] = T411::Api.shared_token
-      http.request(req).body
+    %w(today week month top100).each do |request|
+      define_method(:"#{request}") {T411::Api.request_data(URI.parse($t411_base_url + "/torrents/top/#{request.gsub('top100','100')}"))}
     end
 
-    def self.search_with_category_id(query,cid,limit = 100)
-      uri = URI.join($t411_base_url, '/torrents/','search/',"#{query.gsub(' ','+')}","?&cid=#{cid}&limit=#{limit}")
-      http = Net::HTTP.new(uri.host, uri.port)
-      req = Net::HTTP::Get.new("/torrents/search/#{query.gsub(' ','+')}?&cid=#{cid}&limit=#{limit}")
-      req['Authorization'] = T411::Api.shared_token
-      http.request(req).body
+    def self.search(query, options={})
+      options = {limit: 100, cid: nil}.merge(options)
+      path = "/torrents/search/#{query.gsub(' ','+')}?&limit=#{options[:limit]}&cid=#{options[:cid]}" if options[:cid] != nil && options[:cid].is_a?(Integer) || "/torrents/search/#{query.gsub(' ','+')}?&limit=#{options[:limit]}"
+      req = Net::HTTP::Get.new(path); req['Authorization'] = T411::Api.shared_token
+      Net::HTTP.new($t411_base_url.gsub('http://','')).request(req).body
     end
 
     def self.details(id)
@@ -32,15 +27,7 @@ module T411
       end
     end
 
-    def self.top100
-      T411::Api.request_data(URI.parse($t411_base_url + '/torrents/top/100'))
-    end
-
-    %w(today month).each do |request|
-      define_method(:"#{request}") {T411::Api.request_data(URI.parse($t411_base_url + "/torrents/top/#{request}"))}
-    end
   end
 end
-
 
 

@@ -45,13 +45,15 @@ Get all terms
      {"234":{"11":{"type":"Application - Genre","mode":"single","terms":{"152":"Contr\u00f4le parental","184":"Science","1062":"Permis","163":"G\u00e9n\u00e9alogie","131":"Anonymat","174":"Nettoyage et Opti
 
 #### Search
-Search a torrent based on name, limit is optional. Default = 100
+Search a torrent based on name, limit and category id are optional. Default limit = 100
 
-     T411::Torrents.search('debian',25)
+     T411::Torrents.search('debian', limit: 25)
      {"query":"debian","offset":0,"limit":"25","total":"13","torrents":[{"id":"4856719","name":"Debian 7.0 - \"Wheezy\" - amd64-netinst LITE","category":"234","rewritename":"debian-7-0-wheezy-amd64-netinst-
 
-     T411::Torrents.search_with_category_id('debian',234)
-     {"query":"debian","offset":0,"limit":"50","total":"9","torrents":[{"id":"4856719","name":"Debian 7.0 - \"Wheezy\" - amd64-netinst LITE","category":"234","rewritename":"debian-7-0-wheezy-amd64-netinst-l
+     T411::Torrents.search('debian', cid: 234)
+     {"query":"debian","offset":0,"limit":"100","total":"9","torrents":[{"id":"4856719","name":"Debian 7.0 - \"Wheezy\" - amd64-netinst LITE","category":"234","rewritename":"debian-7-0-wheezy-amd64-netinst-l
+
+     T411::Torrents.search('debian', cid: 234, limit: 10)
 
 #### Details
 Details of a torrent
@@ -71,6 +73,8 @@ Download the torrent file. Path is optional, default = current working directory
      T411::Torrents.today
 
      T411::Torrents.month
+
+     T411::Torrents.week
 
 ### Bookmarks
 
