@@ -12,7 +12,7 @@ module T411
 
     def self.search(query, options={})
       options = {limit: 100, cid: nil}.merge(options)
-      path = "/torrents/search/#{query.gsub(' ','+')}?&limit=#{options[:limit]}&cid=#{options[:cid]}" if options[:cid] != nil && options[:cid].is_a?(Integer) || "/torrents/search/#{query.gsub(' ','+')}?&limit=#{options[:limit]}"
+      path = "/torrents/search/#{query.gsub(' ','+')}?&limit=#{options[:limit]}&cid=#{options[:cid]}" if options[:cid] != nil && options[:cid].is_a?(Integer) || path = "/torrents/search/#{query.gsub(' ','+')}?&limit=#{options[:limit]}"
       req = Net::HTTP::Get.new(path); req['Authorization'] = T411::Api.shared_token
       Net::HTTP.new($t411_base_url.gsub('http://','')).request(req).body
     end
@@ -29,5 +29,4 @@ module T411
 
   end
 end
-
 
