@@ -6,7 +6,7 @@ module T411
   module Api
      extend self
     attr_accessor :token
-    $t411_base_url = 'http://api.t411.me'
+    $t411_base_url = 'http://api.t411.io'
 
     def self.connect(username,password)
       uri = URI.parse($t411_base_url + "/auth")
@@ -24,9 +24,5 @@ module T411
     def self.shared_token
       @token
     end
-
-
-
   end
 end
-
