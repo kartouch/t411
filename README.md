@@ -21,6 +21,7 @@ Or install it yourself as:
 ### Authenticate
 
     T411.authenticate(username,password)
+    T411.authenticated?
 
 ### User
 
