@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = T411::VERSION
   spec.authors       = ["Christophe Augello"]
   spec.email         = ["christophe@augello.be"]
-  spec.description   = "Ruby wrapper for the t411.io API"
-  spec.summary       = "Ruby wrapper for the t411.io API"
+  spec.description   = "Ruby wrapper for the t411.in API"
+  spec.summary       = "Ruby wrapper for the t411.in API"
   spec.homepage      = "https://www.github.com/kartouch/t411"
   spec.license       = "MIT"
 

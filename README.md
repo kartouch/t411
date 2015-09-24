@@ -1,6 +1,6 @@
 # T411
 
-A Ruby wrapper for the t411.me API.
+A Ruby wrapper for the t411 API.
 
 ## Installation
 
