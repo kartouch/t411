@@ -42,5 +42,9 @@ module T411
     def authenticate(username,password)
       T411::Api.connect(username,password)
     end
+
+    def authenticated?
+      T411::Api.shared_token ? true : false
+    end
   end
 end
