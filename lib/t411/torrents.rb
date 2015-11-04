@@ -22,7 +22,7 @@ module T411
     end
 
     def self.download(id,path = Dir.pwd)
-      File.open("#{path}/#{id}.torrent", 'a+') do |line|
+      File.open("#{path}/#{id}.torrent", 'ab+') do |line|
         line.puts T411::Api.request_data(URI.parse($t411_base_url + "/torrents/download/#{id}"))
       end
     end
