@@ -22,7 +22,7 @@
   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-  A Ruby wrapper for the t411.io API.
+  A Ruby wrapper for the t411.in API.
   Supports all API methods
 =end
 
